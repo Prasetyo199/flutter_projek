@@ -61,8 +61,7 @@ class HomeMenu extends StatelessWidget {
           _buildHeader('Materi 6: Navigation'),
           _menuItem(context, 'Navigator Push', const PushNavigationPage(), Icons.double_arrow_rounded),
           
-          // --- PENAMBAHAN MENU FIREBASE DI SINI ---
-          _buildHeader('Firebase Data'),
+          
           Card(
             elevation: 2,
             margin: const EdgeInsets.only(bottom: 10),
