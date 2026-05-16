@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610773334989",
+    "project_id": "fir-flutter-tyok",
+    "storage_bucket": "fir-flutter-tyok.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610773334989:android:677aaed82e74e6e29e2284",
+        "android_client_info": {
+          "package_name": "com.example.flutter_projek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu4Ky9Ek53wdeBhKLpMj5-L7J9cp8Ah5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
