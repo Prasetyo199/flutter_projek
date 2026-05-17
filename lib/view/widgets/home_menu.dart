@@ -63,7 +63,7 @@ class HomeMenu extends StatelessWidget {
           _buildHeader('Materi 6: Navigation'),
           _menuItem(context, 'Navigator Push', const PushNavigationPage(), Icons.double_arrow_rounded),
           
-          _menuItem(context, 'Data Mahasiswa (Supabase)', const MahasiswaPage(), Icons.people_alt_rounded),
+          _menuItem(context, 'Data Mahasiswa', const MahasiswaPage(), Icons.people_alt_rounded),
 
           _buildHeader('Widgets & Input'),
           
