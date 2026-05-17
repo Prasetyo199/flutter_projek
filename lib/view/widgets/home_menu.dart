@@ -61,33 +61,6 @@ class HomeMenu extends StatelessWidget {
           _buildHeader('Materi 6: Navigation'),
           _menuItem(context, 'Navigator Push', const PushNavigationPage(), Icons.double_arrow_rounded),
           
-          
-          Card(
-            elevation: 2,
-            margin: const EdgeInsets.only(bottom: 10),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              leading: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.red[50],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(Icons.storage_rounded, color: Colors.red[700]),
-              ),
-              title: const Text(
-                'Data Mahasiswa (Firebase)', 
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.red)
-              ),
-              subtitle: const Text('Klik untuk hapus data real-time'),
-              trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
-              onTap: () {
-                // Berpindah ke HalamanMahasiswa yang ada di main.dart
-                Navigator.pushNamed(context, '/mahasiswa');
-              },
-            ),
-          ),
-
           Card(
             elevation: 2, 
             margin: const EdgeInsets.only(bottom: 12),
