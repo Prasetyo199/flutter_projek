@@ -16,7 +16,7 @@ import 'gridview_page.dart';
 import 'listview_page.dart';
 import 'bottom_nav_page.dart';
 import 'push_navigation_page.dart';
-import 'mahasiswa/mahasiswa_page.dart';
+
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -28,7 +28,7 @@ class HomeMenu extends StatelessWidget {
       backgroundColor: Colors.blueGrey[50], 
       appBar: AppBar(
         title: const Text(
-          'Flutter Learning Catalog',
+          'Flutter Learning',
           style: TextStyle(letterSpacing: 1.0, fontWeight: FontWeight.bold),
         ),
         centerTitle: false, 
