@@ -8,7 +8,7 @@ class MahasiswaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Membuka jalur pemantauan live stream dari tabel 'mahasiswa' Supabase
-    final Stream<List<Map<String, dynamic>>> _mahasiswaStream = Supabase
+    final Stream<List<Map<String, dynamic>>> mahasiswaStream = Supabase
         .instance.client
         .from('mahasiswa')
         .stream(primaryKey: ['id']) 
@@ -21,7 +21,7 @@ class MahasiswaPage extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: StreamBuilder<List<Map<String, dynamic>>>(
-        stream: _mahasiswaStream,
+        stream: mahasiswaStream,
         builder: (context, snapshot) {
           // 1. Jika loading awal
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -56,7 +56,9 @@ class MahasiswaPage extends StatelessWidget {
                   leading: CircleAvatar(
                     backgroundColor: Colors.teal[100],
                     child: Text(
-                      mhs['nama'][0].toString().toUpperCase(), // Ambil huruf depan nama
+                      mhs['nama'] != null && mhs['nama'].toString().isNotEmpty
+                          ? mhs['nama'][0].toString().toUpperCase()
+                          : 'M', // Ambil huruf depan nama, jika kosong tampilkan 'M'
                       style: TextStyle(color: Colors.teal[900], fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -65,7 +67,56 @@ class MahasiswaPage extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   subtitle: Text('NPM: ${mhs['npm']} | ${mhs['jurusan']}'),
-                  trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                  
+                  // FITUR CRUD: TOMBOL HAPUS DATA DATA MAHASISWA
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    onPressed: () {
+                      // Menampilkan dialog konfirmasi sebelum menghapus
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext dialogContext) {
+                          return AlertDialog(
+                            title: const Text('Hapus Data'),
+                            content: Text('Apakah kamu yakin ingin menghapus data ${mhs['nama']}?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(dialogContext), // Tutup dialog jika batal
+                                child: const Text('Batal'),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  Navigator.pop(dialogContext); // Tutup dialog konfirmasi
+                                  
+                                  try {
+                                    // Perintah menghapus baris di Supabase berdasarkan ID internal
+                                    await Supabase.instance.client
+                                        .from('mahasiswa')
+                                        .delete()
+                                        .eq('id', mhs['id']);
+
+                                    // Memunculkan notifikasi sukses di bawah layar
+                                    if (context.mounted) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('Data mahasiswa berhasil dihapus!')),
+                                      );
+                                    }
+                                  } catch (e) {
+                                    if (context.mounted) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text('Gagal menghapus data: $e')),
+                                      );
+                                    }
+                                  }
+                                },
+                                child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
               );
             },
