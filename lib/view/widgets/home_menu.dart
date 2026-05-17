@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projek/view/mahasiswa/mahasiswa_page.dart';
 import 'scaffold_page.dart';
 import 'center_page.dart';
 import 'row_page.dart';
@@ -15,6 +16,7 @@ import 'gridview_page.dart';
 import 'listview_page.dart';
 import 'bottom_nav_page.dart';
 import 'push_navigation_page.dart';
+import 'mahasiswa/mahasiswa_page.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -61,6 +63,40 @@ class HomeMenu extends StatelessWidget {
           _buildHeader('Materi 6: Navigation'),
           _menuItem(context, 'Navigator Push', const PushNavigationPage(), Icons.double_arrow_rounded),
           
+          _menuItem(context, 'Data Mahasiswa (Supabase)', const MahasiswaPage(), Icons.people_alt_rounded),
+
+          _buildHeader('Widgets & Input'),
+          
+          // WIDGET CARD UNTUK MAHASISWA INPUT DATA
+          Card(
+            elevation: 2,
+            margin: const EdgeInsets.only(bottom: 10),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.teal[50],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(Icons.people_alt_rounded, color: Colors.teal[700]),
+              ),
+              title: const Text(
+                'Data Mahasiswa (Supabase)', 
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.teal)
+              ),
+              subtitle: const Text('Input data mahasiswa & jurusan secara real-time'),
+              trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
+              onTap: () {
+                // Berpindah ke Halaman Daftar Mahasiswa Real-time
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MahasiswaPage()),
+                );
+              },
+            ),
+          ),
+
           Card(
             elevation: 2, 
             margin: const EdgeInsets.only(bottom: 12),
